@@ -10,24 +10,26 @@
 4. Firebase login
     - `firebase login`
 5. Add Firebase project
-- `ng add @angular/fire`
-    - Seleccionar el proyecto que habiamos creado antes
-    - Elegir solo la opcion Authentication para configurar
-- Se deberia crear automáticamente un archivo en *environments/environment.ts*
-- Si sale todo bien no hace falta configurar nada mas en angular.json
+    - `ng add @angular/fire`
+        - Seleccionar el proyecto que habiamos creado antes
+        - Elegir solo la opcion Authentication para configurar
+    - Se deberia crear automáticamente un archivo en *environments/environment.ts*
+    - Si sale todo bien no hace falta configurar nada mas en angular.json
 
-- En **app.module.ts**:
-    - `import { initializeApp, provideFirebaseApp } from '@angular/fire/app';`
-    - `import { environment } from '../environments/environment';`
-    - `import { provideAuth, getAuth } from '@angular/fire/auth';`
-```ts
-imports: [
-    // ... ,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth())
-],
-// ...
-```
+    - En **app.module.ts**:
+        ```ts
+        import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+        import { environment } from '../environments/environment';
+        import { provideAuth, getAuth } from '@angular/fire/auth';
+        ```
+        ```ts
+        imports: [
+            // ... ,
+            provideFirebaseApp(() => initializeApp(environment.firebase)),
+            provideAuth(() => getAuth())
+        ],
+        // ...
+        ```
 6. Crear los servicios y componentes
 
 
