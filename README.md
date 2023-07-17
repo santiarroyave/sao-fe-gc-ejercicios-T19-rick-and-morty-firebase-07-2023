@@ -1,5 +1,39 @@
 # T19 - Rick And Morty Firebase
 
+## Apuntes
+### Firebase
+1. Crear un proyecto en la web de Firebase
+2. Asignamos métodos de autentificación
+3. Instalación
+    - `npm install -g firebase-tools`
+    - `npm install -save firebase @angular/fire`
+4. Firebase login
+    - `firebase login`
+5. Add Firebase project
+- `ng add @angular/fire`
+    - Seleccionar el proyecto que habiamos creado antes
+    - Elegir solo la opcion Authentication para configurar
+- Se deberia crear automáticamente un archivo en *environments/environment.ts*
+- Si sale todo bien no hace falta configurar nada mas en angular.json
+
+- En **app.module.ts**:
+    - `import { initializeApp, provideFirebaseApp } from '@angular/fire/app';`
+    - `import { environment } from '../environments/environment';`
+    - `import { provideAuth, getAuth } from '@angular/fire/auth';`
+```ts
+imports: [
+    // ... ,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth())
+],
+// ...
+```
+6. Crear los servicios y componentes
+
+
+
+
+
 ## Documentación de Angular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.3.
