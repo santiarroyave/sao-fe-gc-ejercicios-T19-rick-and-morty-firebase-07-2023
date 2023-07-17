@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "t19-rick-and-morty-firebase": {
+      "hosting": {
+        "sao-fe-gc-ejercicios-T19-rick-and-morty-firebase-07-2023": [
+          "t19-rick-and-morty-firebase"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "t19-rick-and-morty-firebase"
+  }
+}

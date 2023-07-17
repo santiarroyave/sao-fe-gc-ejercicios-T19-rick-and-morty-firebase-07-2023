@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "sao-fe-gc-ejercicios-T19-rick-and-morty-firebase-07-2023",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
