@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { NavComponent } from './home/nav/nav.component';
 import { AboutComponent } from './home/about/about.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     NavComponent,
     AboutComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
