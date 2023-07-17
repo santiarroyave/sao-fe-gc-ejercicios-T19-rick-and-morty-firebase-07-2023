@@ -31,6 +31,8 @@
         // ...
         ```
 6. Crear los servicios y componentes
+    - Componentes "login/register/home"
+    - Servicio user: `ng g s services/user`
 
 
 
