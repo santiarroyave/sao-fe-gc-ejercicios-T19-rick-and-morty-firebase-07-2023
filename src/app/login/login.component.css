@@ -1,0 +1,21 @@
+.fondoLogin{
+    height: 100vh;
+    width: 100vw;
+
+    background-image: url(../../assets/images/fondo-login-rm-2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.contenedorLogin{
+    background-color: rgba(255,255,255,80%);
+}
+
+.contenedorLogin h2{
+    font-size: 3em;
+}
+
+.contenedorLogin label{
+    font-size: 1.5em;
+}

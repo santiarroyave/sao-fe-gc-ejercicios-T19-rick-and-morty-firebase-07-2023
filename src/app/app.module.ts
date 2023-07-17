@@ -12,6 +12,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './home/nav/nav.component';
 import { AboutComponent } from './home/about/about.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AboutComponent } from './home/about/about.component';
     AppComponent,
     HomeComponent,
     NavComponent,
-    AboutComponent
+    AboutComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
