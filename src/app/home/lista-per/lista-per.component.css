@@ -1,0 +1,13 @@
+.cartaPersonaje{
+    padding: 0;
+    width: 18rem;
+}
+
+.cartaPersonaje > img{
+    width: 100%;
+    scale: 1/1;
+}
+
+.contTitulo{
+    padding: 5%;
+}

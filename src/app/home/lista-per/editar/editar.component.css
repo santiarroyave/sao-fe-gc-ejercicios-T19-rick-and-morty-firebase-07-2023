@@ -1,0 +1,18 @@
+.contPersonaje{
+    background-color: rgba(0,0,0,50%);
+}
+
+.tarjeta{
+    position: absolute;
+    background-color: rgba(255,255,255,80%);
+}
+
+
+/* Información personaje */
+.infoPersonaje h4{
+    font-size: 4em;
+    font-weight: bold;
+}
+.infoPersonaje img{
+    width: 100%;
+}

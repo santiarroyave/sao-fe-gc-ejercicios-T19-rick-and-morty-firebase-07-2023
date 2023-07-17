@@ -1,0 +1,64 @@
+
+<div *ngIf="abierto == true" class="contPersonaje position-fixed top-0 start-0 end-0 bottom-0 d-flex align-items-center justify-content-center">
+    <div class="rounded tarjeta container">
+        <!-- Boton para cerrar la ventana -->
+        <button class="btn btn-danger position-absolute end-0 m-1" (click)="cerrar()">X</button>
+
+        <div class="row infoPersonaje p-5 p-md-5">
+            <div class="col col-6 col-md-4">
+                <img src="{{personaje.image}}" alt="">
+            </div>
+            <div class="col col-12 col-md-8">
+                <!-- <h4>{{name}}</h4> -->
+                <!-- {{seleccionado |json}} -->
+
+                <!-- ID -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">ID</span>
+                    <input type="text" class="form-control" [(ngModel)]="personaje.id">
+                </div>
+
+                <!-- Nombre -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Nombre</span>
+                    <input type="text" class="form-control" [(ngModel)]="personaje.name">
+                </div>
+
+                <!-- Status -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Status</span>
+                    <input type="text" class="form-control" [(ngModel)]="personaje.status">
+                </div>
+
+                <!-- Species -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Species</span>
+                    <input type="text" class="form-control" [(ngModel)]="personaje.species">
+                </div>
+
+                <!-- Gender -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Gender</span>
+                    <input type="text" class="form-control" [(ngModel)]="personaje.gender">
+                </div>
+
+                <!-- Origin -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Origin</span>
+                    <input type="text" class="form-control" [(ngModel)]="personaje.origin">
+                </div>
+                
+                <!-- Image -->
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Image</span>
+                    <input type="text" class="form-control" [(ngModel)]="personaje.image">
+                </div>
+
+                <!-- Guardar -->
+                <button type="button" class="btn btn-primary" (click)="crear()">Crear</button>
+
+            </div>
+        </div>
+    </div>
+    
+</div>
