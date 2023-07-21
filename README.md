@@ -21,10 +21,12 @@
         import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
         import { environment } from '../environments/environment';
         import { provideAuth, getAuth } from '@angular/fire/auth';
+        import { ReactiveFormsModule } from '@angular/forms';
         ```
         ```ts
         imports: [
             // ... ,
+            ReactiveFormsModule,
             provideFirebaseApp(() => initializeApp(environment.firebase)),
             provideAuth(() => getAuth())
         ],
@@ -63,6 +65,60 @@
             
         }
         ```
+    - En **register.component.html**
+        Nota importante: Usar el **ReactiveFormsModule** como se muestra abajo, porque si se usa el *FormsModule: ([ngModel])* da errores en firebase.
+        PD: Puede ser que no le haya pasado el objeto correctamente. Pendiente de revisión para confirmar.
+        ```ts
+        <form [formGroup]="formReg" (ngSubmit)="registrar()">
+            <div>
+                <input type="email" formControlName="email">
+            </div>
+            <div>
+                <input type="password"formControlName="password">
+            </div>
+            <div>
+                <button type="submit">Registrarse</button>
+            </div>
+        </form>
+        ```
+    - En **register.component.ts**
+        ```ts
+        import { Component, Input } from '@angular/core';
+        import { Router } from '@angular/router';
+        import { UserService } from '../services/user.service';
+        import { FormGroup, FormControl } from '@angular/forms';
+
+        @Component({
+        selector: 'app-register',
+        templateUrl: './register.component.html',
+        styleUrls: ['./register.component.css']
+        })
+        export class RegisterComponent {
+
+        // ATRIBUTOS
+        formReg: FormGroup;
+
+        // CONSTRUCTOR
+        constructor(private userService:UserService, private router:Router){
+            this.formReg = new FormGroup({
+            email: new FormControl(),
+            password: new FormControl()
+            })
+        }
+
+        // METODOS
+        registrar(){
+            this.userService.register(this.formReg.value)
+            .then(response => {
+            console.log(response);
+            console.log("Registrado correctamente");
+            this.router.navigate(["/login"]);
+            })
+            .catch(error => console.log(error));
+        };
+        }
+        ```
+
 
 
 
