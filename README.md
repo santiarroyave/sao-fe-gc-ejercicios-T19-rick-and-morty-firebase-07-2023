@@ -66,8 +66,10 @@
         }
         ```
     - En **register.component.html**
-        Nota importante: Usar el **ReactiveFormsModule** como se muestra abajo, porque si se usa el *FormsModule: ([ngModel])* da errores en firebase.
-        PD: Puede ser que no le haya pasado el objeto correctamente. Pendiente de revisión para confirmar.
+
+      Nota importante: Usar el **ReactiveFormsModule** como se muestra abajo, porque si se usa el *FormsModule: ([ngModel])* da errores en firebase.
+
+      PD: Puede ser que no le haya pasado el objeto correctamente. Pendiente de revisión para confirmar.
         ```ts
         <form [formGroup]="formReg" (ngSubmit)="registrar()">
             <div>
