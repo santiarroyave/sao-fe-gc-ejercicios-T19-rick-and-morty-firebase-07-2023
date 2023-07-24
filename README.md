@@ -70,7 +70,7 @@
       Nota importante: Usar el **ReactiveFormsModule** como se muestra abajo, porque si se usa el *FormsModule: ([ngModel])* da errores en firebase.
 
       PD: Puede ser que no le haya pasado el objeto correctamente. Pendiente de revisión para confirmar.
-        ```ts
+        ```html
         <form [formGroup]="formReg" (ngSubmit)="registrar()">
             <div>
                 <input type="email" formControlName="email">
@@ -122,7 +122,7 @@
         ```
 
     - En **login.component.html**
-        ```ts
+        ```html
         <form formGroup="formLogin" (ngSubmit)="onSubmit()">
             <div>
                 <input type="email" formControlName="email">
@@ -188,6 +188,39 @@
             alert("Error al iniciar sesión con Google");
         }
         }
+        ```
+    - En **nav.component.html**
+        ```html
+            <button class="btn btn-outline-danger me-2" (click)="logout()">Logout</button>
+        ```
+
+    - En **nav.component.ts**
+        ```ts
+            import { Component, OnInit } from '@angular/core';
+            import { Router } from '@angular/router';
+            import { UserService } from 'src/app/services/user.service';
+
+            @Component({
+            selector: 'app-nav',
+            templateUrl: './nav.component.html',
+            styleUrls: ['./nav.component.css']
+            })
+            export class NavComponent implements OnInit{
+
+                // CONSTRUCTOR
+                constructor(private userService: UserService, private router:Router){ }
+
+                // METODOS
+                ngOnInit(): void { };
+
+                logout(){
+                    this.userService.logout()
+                    .then(() => {
+                    this.router.navigate(["/login"]);
+                    })
+                    .catch(error => console.log(error));
+                }
+            }
         ```
 
 
