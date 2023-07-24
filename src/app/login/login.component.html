@@ -10,17 +10,21 @@
         </div>
         <div class="row justify-content-center">
             <div class="col col-md-6 contenedorLogin py-3 rounded-bottom">
-                <form>
+                <form [formGroup]="formLogin" (ngSubmit)="onSubmit()">
                     <div class="mb-3">
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" class="form-control" placeholder="Email" formControlName="email">
                     </div>
                     <div class="mb-3">
-                        <input type="password" class="form-control" placeholder="Contraseña">
+                        <input type="password" class="form-control" placeholder="Contraseña" formControlName="password">
                     </div>
                     <div class="col d-grid">
                         <button type="submit" class="btn btn-primary">Iniciar sesión</button>
                     </div>
                 </form>
+                
+                <div class="col d-grid">
+                    <button type="submit" class="btn btn-outline-primary mt-3" (click)="iniciarGoogle()">Iniciar sesión con Google</button>
+                </div>
     
             </div>
         </div>
