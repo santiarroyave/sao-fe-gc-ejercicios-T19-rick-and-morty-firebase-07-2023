@@ -43,6 +43,6 @@ export class LoginComponent implements OnInit{
       this.router.navigate(["home"]);
     })
     .catch(error => console.log(error));
-    alert("Error al iniciar sesión con Google");
+    // alert("Error al iniciar sesión con Google");
   }
 }
