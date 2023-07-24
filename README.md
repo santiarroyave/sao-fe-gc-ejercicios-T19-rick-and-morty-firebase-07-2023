@@ -196,33 +196,46 @@
 
     - En **nav.component.ts**
         ```ts
-            import { Component, OnInit } from '@angular/core';
-            import { Router } from '@angular/router';
-            import { UserService } from 'src/app/services/user.service';
+        import { Component, OnInit } from '@angular/core';
+        import { Router } from '@angular/router';
+        import { UserService } from 'src/app/services/user.service';
 
-            @Component({
-            selector: 'app-nav',
-            templateUrl: './nav.component.html',
-            styleUrls: ['./nav.component.css']
-            })
-            export class NavComponent implements OnInit{
+        @Component({
+        selector: 'app-nav',
+        templateUrl: './nav.component.html',
+        styleUrls: ['./nav.component.css']
+        })
+        export class NavComponent implements OnInit{
 
-                // CONSTRUCTOR
-                constructor(private userService: UserService, private router:Router){ }
+            // CONSTRUCTOR
+            constructor(private userService: UserService, private router:Router){ }
 
-                // METODOS
-                ngOnInit(): void { };
+            // METODOS
+            ngOnInit(): void { };
 
-                logout(){
-                    this.userService.logout()
-                    .then(() => {
-                    this.router.navigate(["/login"]);
-                    })
-                    .catch(error => console.log(error));
-                }
+            logout(){
+                this.userService.logout()
+                .then(() => {
+                this.router.navigate(["/login"]);
+                })
+                .catch(error => console.log(error));
             }
+        }
         ```
 
+7. Creación de Route Guards
+    - En **app-routing.module.ts**
+        ```ts
+        import { canActivate, redirectUnauthorizedTo } from "@angular/fire/auth-guard";
+        ```
+
+        Lo ponemos asi en las rutas que queramos proteger:
+        ```ts
+        {path:"home", component: HomeComponent, ...canActivate(() => redirectUnauthorizedTo(["/login"]))},
+        {path:"about", component: AboutComponent, ...canActivate(() => redirectUnauthorizedTo(["/login"]))},
+        {path:"", redirectTo: "/home", pathMatch:"full"}, // Redirige la url base a donde queramos
+        {path:"**", component: NotFoundComponent} // Para la página de error 404
+        ```
 
 
 
