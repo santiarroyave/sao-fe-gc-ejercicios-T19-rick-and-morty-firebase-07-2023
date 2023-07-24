@@ -70,7 +70,7 @@
       Nota importante: Usar el **ReactiveFormsModule** como se muestra abajo, porque si se usa el *FormsModule: ([ngModel])* da errores en firebase.
 
       PD: Puede ser que no le haya pasado el objeto correctamente. Pendiente de revisión para confirmar.
-        ```ts
+        ```html
         <form [formGroup]="formReg" (ngSubmit)="registrar()">
             <div>
                 <input type="email" formControlName="email">
@@ -121,6 +121,121 @@
         }
         ```
 
+    - En **login.component.html**
+        ```html
+        <form formGroup="formLogin" (ngSubmit)="onSubmit()">
+            <div>
+                <input type="email" formControlName="email">
+            </div>
+            <div>
+                <input type="password" formControlName="password">
+            </div>
+            <div>
+                <button type="submit">Iniciar sesión</button>
+            </div>
+        </form>
+            <div>
+                <button (click)="iniciarGoogle()">Iniciar sesión con Google</button>
+            </div>
+        ```
+    - En **login.component.ts**
+        ```ts
+        import { Component, OnInit } from '@angular/core';
+        import { FormControl, FormGroup } from '@angular/forms';
+        import { UserService } from '../services/user.service';
+        import { Router } from '@angular/router';
+
+        @Component({
+        selector: 'app-login',
+        templateUrl: './login.component.html',
+        styleUrls: ['./login.component.css']
+        })
+        export class LoginComponent implements OnInit{
+
+        // ATRIBUTOS
+        formLogin: FormGroup;
+
+        // CONSTRUCTOR
+        constructor(private userService: UserService, private router: Router){
+            this.formLogin = new FormGroup({
+            email: new FormControl(),
+            password: new FormControl()
+            });
+        }
+
+        ngOnInit():void{ }
+
+        // METODOS
+        onSubmit(){
+            this.userService.login(this.formLogin.value)
+            .then(response => {
+            console.log(response);
+            this.router.navigate(["home"]);
+            })
+            .catch(error => {
+            console.log(error);
+            alert("Error al iniciar sesión");
+            });
+        }
+        
+        iniciarGoogle(){
+            this.userService.loginWithGoogle()
+            .then(response => {
+            console.log(response);
+            this.router.navigate(["home"]);
+            })
+            .catch(error => console.log(error));
+            alert("Error al iniciar sesión con Google");
+        }
+        }
+        ```
+    - En **nav.component.html**
+        ```html
+            <button class="btn btn-outline-danger me-2" (click)="logout()">Logout</button>
+        ```
+
+    - En **nav.component.ts**
+        ```ts
+        import { Component, OnInit } from '@angular/core';
+        import { Router } from '@angular/router';
+        import { UserService } from 'src/app/services/user.service';
+
+        @Component({
+        selector: 'app-nav',
+        templateUrl: './nav.component.html',
+        styleUrls: ['./nav.component.css']
+        })
+        export class NavComponent implements OnInit{
+
+            // CONSTRUCTOR
+            constructor(private userService: UserService, private router:Router){ }
+
+            // METODOS
+            ngOnInit(): void { };
+
+            logout(){
+                this.userService.logout()
+                .then(() => {
+                this.router.navigate(["/login"]);
+                })
+                .catch(error => console.log(error));
+            }
+        }
+        ```
+
+7. Creación de Route Guards
+    - En **app-routing.module.ts**
+        ```ts
+        import { canActivate, redirectUnauthorizedTo } from "@angular/fire/auth-guard";
+        ```
+
+        Lo ponemos asi en las rutas que queramos proteger:
+        ```ts
+        {path:"home", component: HomeComponent, ...canActivate(() => redirectUnauthorizedTo(["/login"]))},
+        {path:"about", component: AboutComponent, ...canActivate(() => redirectUnauthorizedTo(["/login"]))},
+        {path:"", redirectTo: "/home", pathMatch:"full"}, // Redirige la url base a donde queramos
+        {path:"**", component: NotFoundComponent} // Para la página de error 404
+        ```
 
 
 
